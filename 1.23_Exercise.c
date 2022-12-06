@@ -32,7 +32,7 @@
 //     }
 // }
 
-
+/*
 #include <stdio.h>
 #include <string.h>
 int main()
@@ -64,4 +64,35 @@ printf('hello world); // This is a test \n\
         }
     }
     printf("%s", code);
+}
+*/
+
+#include <stdio.h>
+
+int main() {
+    // code = example input for program
+    char code[100] = "#include <stdio.h> \n\
+    int main() { \n\
+    printf('hello world); // This is a test \n\
+    }";
+    int i, current, next, status;
+    next = '0'; // keep track of next char
+    status = 0; // keeps track of whether or not the index is within a comment. 
+    for (i = 0; code[i] != '\0'; i++) { // loop through list until EOF
+        current = code[i]; 
+        next = code[i+1];
+
+        if (next == '/' && current == '/') { // begining of comment
+            status = 1;
+            
+        }
+        else if(status == 1 && current == '\n') { // new line considered end of comment for this program
+            status = 0;
+           
+        }
+        else if (status != 1) {
+            putchar(current);
+           
+        }
+    }
 }

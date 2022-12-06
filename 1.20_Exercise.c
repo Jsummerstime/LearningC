@@ -9,7 +9,7 @@ Think of the terminal/console as lines and columns. Suppose you have 80 columns 
 by outputting the number of spaces necessary to move to the next tab stop.
 */
 
-
+/*
 #include <stdio.h>
 
 #define TS 5  // symbolic parameter becase TS should not change
@@ -34,4 +34,32 @@ while ((c = getchar()) != EOF) { // while user provides input
     }
 }
 
+}
+*/
+
+#include <stdio.h>
+
+int main() {
+    int count = 0;
+    int c;
+    int i;
+    while ((c=getchar()) != EOF) {
+        // if (count == 7) {
+        //    count = 1;
+        //    putchar(c);
+        //}
+        printf("%d", count);
+        if (c == '\t' ) {
+             for (i=0; i < (8 - count); ++i) {
+              putchar('#');
+            }
+            count = 0;
+        }
+
+        else {
+            ++count;
+            putchar(c);
+        }
+
+    }
 }
